@@ -1,0 +1,1 @@
+https://gist.github.com/askilondz/d618fb2e39f481fd19bf3f8b0476a3b6#setup-the-cloudfront-distribution

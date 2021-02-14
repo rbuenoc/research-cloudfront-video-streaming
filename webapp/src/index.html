@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <link href="./js/video-js/video-js.css" rel="stylesheet">
+</head>
+
+<body>
+    <video id="story_video" class="video-js vjs-default-skin vjs-16-9 vjs-big-play-centered" controls width="500"
+        height="281" poster="">
+        <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+    </video>
+
+</body>
+
+<script src="./js/video-js/video.min.js"></script>
+<script src="./js/video-js-hls/videojs-contrib-hls.min.js"></script>
+<script src="./js/video-js-dash/dash.all.min.js"></script>
+<script src="./js/video-js-dash/videojs-dash.min.js"></script>
+
+<script>
+    //Optional Callback to disable debugging logging
+    var dashjsCallback = function (player, mediaPlayer) {
+        // Log MediaPlayer messages through video.js
+        if (videojs && videojs.log) {
+            mediaPlayer.getDebug().setLogToBrowserConsole(false);
+        }
+    };
+
+    //Add the Callback hook from above
+    //videojs.Html5DashJS.hook('beforeinitialize', dashjsCallback);
+
+    var videoElement = document.getElementsByTagName("video")[0];
+
+    let manifest = "sample/dash/index.mpd";
+    let mimeType = "application/dash+xml";
+
+    var myPlayer = videojs(videoElement, { "controls": true, "autoplay": true, "preload": "auto", "fluid": "true" });
+    myPlayer.src({
+        src: 'https://d2bglds00fz5oc.cloudfront.net/' + manifest,
+        type: mimeType
+    });
+
+    myPlayer.play();
+</script>
+
+</html>
